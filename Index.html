@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024-Happy New Year (GOPAL)</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Tahoma, sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+        background: #262626;
+        background-image: linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+
+    .box {
+        position: absolute;
+        cursor: pointer;
+
+    }
+
+    .box::before {
+        content: 'Bye Bye';
+        position: absolute;
+        width: 100%;
+        color: #fff;
+        top: -0.75rem;
+        text-align: center;
+        font-size: 2em;
+        transition: 1s;
+
+    }
+
+    .box:hover::before {
+        transform: translateY(-100px);
+        opacity: 0;
+        filter: blur(30px);
+    }
+
+    .box::after {
+        content: 'Happy New Year ';
+        position: absolute;
+        width: 100%;
+        color: #fff;
+        top: -0.75rem;
+        left: 0;
+        text-align: center;
+        font-size: 2em;
+        transition: 1s;
+
+        transform: translatey(100px);
+        opacity: 0;
+        filter: blur(30px);
+    }
+
+    .box:hover::after {
+        transform: translatey(0px);
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    .box span {
+        display: inline-block;
+        color: #fff;
+        font-size: 10em;
+        font-weight: bold;
+        transition: 2s;
+        filter: blur(1px);
+
+    }
+
+    .box span:last-child {
+        color: #ff236e;
+    }
+
+    .box:hover span:last-child {
+        transform: rotate(45deg) translate(-200px);
+        opacity: 0;
+        filter: blur(30px);
+    }
+
+    .box span:nth-child(3):after {
+        content: '4';
+        position: absolute;
+        color: #1dff4e;
+        transform: rotate(-45deg) translateY(200px);
+        opacity: 0;
+        filter: blur(30px);
+        transition: 2s;
+
+    }
+
+    .box:hover span:nth-child(3):after {
+        transform: rotate(0deg) translateY(0px);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    audio {
+        display: none;
+    }
+    @media only screen and (max-width: 768px) {
+        .box:hover::before,
+        .box:hover::after,
+        .box span:last-child,
+        .box span:nth-child(3):after {
+            transform: none;
+            opacity: 1;
+            filter: blur(0px);
+        }
+    }
+    
+</style>
+
+<body>
+    <div class="box" id="box" >
+        <span>2</span>
+        <span>0</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+    
+
+    <script>
+        const box = document.getElementById('box');
+        const music = new Audio('Music.mp3');
+
+        box.addEventListener('mouseover', playMusic);
+        box.addEventListener('mouseleave', stopMusic);
+        box.addEventListener('touchstart', handleTouch);
+        box.addEventListener('touchend', stopMusic);
+
+        function playMusic() {
+            music.play();
+        }
+
+        function stopMusic() {
+            music.pause();
+            music.currentTime = 0;
+        }
+        function handleTouch(event) {
+            event.preventDefault();
+            playMusic();
+        }
+    </script>
+</body>
+</html>
